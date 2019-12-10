@@ -1,36 +1,34 @@
+#include<vector>
 #include<iterator>
 #include<assert.h>
 #include<deque>
 #include<fstream>
 #include<iostream>
 using namespace std;
-void bfparse(deque<char> s);
+void bfparse(vector<char> s);
 
 int main(int argc, char* argv[])
 {
 	//argv[1] is path to bf file
 	if(argc>1) //check for arguement
 	{
-		deque<char> s;	//bf file string
+		vector<char> s;	//bf file string
+		vector<char>::iterator i_v;
 
 		ifstream in(argv[1]); //opens file
-
 		assert(in.is_open()); //check for open
-		deque<char>::iterator i_v;
 
 		while(!(in.eof()||in.fail()))
 		{
-			char buffer[1];
-
-			in.read(buffer, 1);
-			if(buffer[0]=='+'||buffer[0]=='-'||buffer[0]=='.'||buffer[0]==','||buffer[0]=='['||buffer[0]==']'||buffer[0]=='>'||buffer[0]=='<') //shitty code
+			char buffer;
+			in.get(buffer);
+			
+			if(buffer=='+'||buffer=='-'||buffer=='.'||buffer==','||buffer=='['||buffer==']'||buffer=='>'||buffer=='<')
 			{
-				s.push_back(buffer[0]); //add to end of deque
+				s.push_back(buffer); //add to end of deque
 				
 			}
-		}
-		s.erase(s.end()-1, s.end());//need this cause last symbol is read twice for some reason
-		
+		}	
 		//debug
 		/*
 		for(i_v=s.begin(); i_v<s.end(); ++i_v)
@@ -48,12 +46,12 @@ int main(int argc, char* argv[])
 	}
 	return 0;
 }
-void bfparse(deque<char> s)
+void bfparse(vector<char> s)
 {
 	char buffer;
-	deque<char>::iterator c;
+	vector<char>::iterator c;
 	
-	deque<unsigned char> memory;//brainfuck array
+	deque<unsigned char> memory;//brainbuffer array
 	deque<unsigned char>::iterator i;
 	i=memory.begin();
 	*i = 0;
@@ -84,11 +82,22 @@ void bfparse(deque<char> s)
 				cout<<*i;
 				break;
 			case ',':
-				//cin>>*i; //causes segfault
+				cin>>*i;
 				break;
 			case '[':
+				if(*i==0)
+				{
+					while(*c!=']')//loops infinite, need to fix
+						c++;
+					cout<<*c;
+					c++;
+				}
 				break;
 			case ']':
+				while(*c!='[')
+				{
+					c--;
+				}
 				break;
 		}
 	}
