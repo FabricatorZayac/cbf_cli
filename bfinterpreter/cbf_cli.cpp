@@ -48,7 +48,6 @@ int main(int argc, char* argv[])
 }
 void bfparse(vector<char> s)
 {
-	char current_char;
 	size_t loop;
 	char buffer;
 	vector<char>::iterator c;
@@ -88,7 +87,26 @@ void bfparse(vector<char> s)
 				cin>>*i;
 				break;
 			case '[':
-				continue;
+				if(*i)
+				{
+					continue;
+				}
+				else
+				{
+					loop = 1;
+					while(loop>0)
+					{
+						c++;
+                		if (*c == '[') 
+						{
+                    		loop++;
+                		} 
+						else if (*c == ']') 
+						{
+                    		loop--;
+                		}
+					}
+				}
 				break;
 			case ']':
 				if(*i==0)
@@ -97,12 +115,11 @@ void bfparse(vector<char> s)
             	while (loop > 0) 
 				{
 					c--;
-                	current_char = *c;
-                	if (current_char == '[') 
+                	if (*c == '[') 
 					{
                     	loop--;
                 	} 
-					else if (current_char == ']') 
+					else if (*c == ']') 
 					{
                     	loop++;
                 	}
