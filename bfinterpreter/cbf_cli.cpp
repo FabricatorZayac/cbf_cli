@@ -48,24 +48,27 @@ int main(int argc, char* argv[])
 }
 void bfparse(vector<char> s)
 {
+	char current_char;
+	size_t loop;
 	char buffer;
 	vector<char>::iterator c;
 	
 	deque<unsigned char> memory;//brainbuffer array
 	deque<unsigned char>::iterator i;
 	i=memory.begin();
-	*i = 0;
 
+	//initialization
+	*i = 0;
 	memory.push_back(0);
+	memory.push_front(0);
 
 	for(c=s.begin(); c<s.end(); c++)
 	{
 		switch(*c){
 			case '<':
+				--i;
 				if(i==memory.begin())
 					memory.push_front(0);
-				else
-					--i;
 				break;
 			case '>':
 				++i;
@@ -73,10 +76,10 @@ void bfparse(vector<char> s)
 					memory.push_back(0);
 				break;
 			case '+':
-				*i = (*i+1)%256;
+				*i = (*i+1);
 				break;
 			case '-':
-				*i = (*i-1)%256;
+				*i = (*i-1);
 				break;
 			case '.':
 				cout<<*i;
@@ -85,19 +88,25 @@ void bfparse(vector<char> s)
 				cin>>*i;
 				break;
 			case '[':
-				if(*i==0)
-				{
-					while(*c!=']')//loops infinite, need to fix
-						c++;
-					cout<<*c;
-					c++;
-				}
+				continue;
 				break;
 			case ']':
-				while(*c!='[')
+				if(*i==0)
+					continue;
+				loop = 1;
+            	while (loop > 0) 
 				{
 					c--;
-				}
+                	current_char = *c;
+                	if (current_char == '[') 
+					{
+                    	loop--;
+                	} 
+					else if (current_char == ']') 
+					{
+                    	loop++;
+                	}
+            	}
 				break;
 		}
 	}
