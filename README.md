@@ -1,4 +1,4 @@
 # cbf_cli
 CLI brainfuck interpreter written in c++
 
-[WIP] Doesn't work. Need to add loops.
+Can accept files of (probably) unlimited size and has an infinite memory strip in both directions
