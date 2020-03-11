@@ -22,21 +22,13 @@ int main(int argc, char* argv[])
 		{
 			char buffer;
 			in.get(buffer);
-			
+
 			if(buffer=='+'||buffer=='-'||buffer=='.'||buffer==','||buffer=='['||buffer==']'||buffer=='>'||buffer=='<')
 			{
 				s.push_back(buffer); //add to end of deque
-				
+
 			}
 		}	
-		//debug
-		/*
-		for(i_v=s.begin(); i_v<s.end(); ++i_v)
-			cout<<*i_v;
-		cout<<endl;
-		cout<<"filesize="<<s.size()<<endl;
-		*/
-
 		bfparse(s);
 	}
 	else
@@ -51,7 +43,7 @@ void bfparse(vector<char> s)
 	size_t loop;
 	char buffer;
 	vector<char>::iterator c;
-	
+
 	deque<unsigned char> memory;//brainbuffer array
 	deque<unsigned char>::iterator i;
 	i=memory.begin();
@@ -97,14 +89,14 @@ void bfparse(vector<char> s)
 					while(loop>0)
 					{
 						c++;
-                		if (*c == '[') 
+						if (*c == '[') 
 						{
-                    		loop++;
-                		} 
+							loop++;
+						} 
 						else if (*c == ']') 
 						{
-                    		loop--;
-                		}
+							loop--;
+						}
 					}
 				}
 				break;
@@ -112,18 +104,18 @@ void bfparse(vector<char> s)
 				if(*i==0)
 					continue;
 				loop = 1;
-            	while (loop > 0) 
+				while (loop > 0) 
 				{
 					c--;
-                	if (*c == '[') 
+					if (*c == '[') 
 					{
-                    	loop--;
-                	} 
+						loop--;
+					} 
 					else if (*c == ']') 
 					{
-                    	loop++;
-                	}
-            	}
+						loop++;
+					}
+				}
 				break;
 		}
 	}
