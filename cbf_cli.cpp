@@ -15,28 +15,28 @@ int main(int argc, char* argv[])
 	//argv[1] is path to bf file
 	if(argc>1) //check for arguement
 	{
-		if(strcmp(argv[1], "-i")==0)
+		if(strcmp(argv[1], "-h")==0 || strcmp(argv[1], "--help")==0)
 		{
-			string bf;
-			getline(cin, bf);
-			copy(bf.begin(), bf.end(), back_inserter(s));
+			cout<<"Usage: bf [Filename]"<<endl
+				<<" -h, --help          display this help and exit"<<endl;
+			return 0;
 		}
-		else
-		{
-			ifstream infile(argv[1]); //opens file
-			assert(infile.is_open()); //check for open
 
-			while(!(infile.eof()||infile.fail()))
-			{
-				char buffer;
-				infile.get(buffer);
-				s.push_back(buffer); //add to end of vector
-			}
-		}	
+		ifstream infile(argv[1]); //opens file
+		assert(infile.is_open()); //check for open
+
+		while(!(infile.eof()||infile.fail()))
+		{
+			char buffer;
+			infile.get(buffer);
+			s.push_back(buffer); //add to end of vector
+		}
 	}
 	else
 	{
-		return 0;
+		string bf;
+		getline(cin, bf);
+		copy(bf.begin(), bf.end(), back_inserter(s));
 	}
 	bfparse(s);
 	return 0;
