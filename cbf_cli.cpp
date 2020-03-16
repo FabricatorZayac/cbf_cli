@@ -11,10 +11,10 @@ void bfparse(vector<char> s);
 
 int main(int argc, char* argv[])
 {
+	vector<char> s;	//bf code string
 	//argv[1] is path to bf file
 	if(argc>1) //check for arguement
 	{
-		vector<char> s;	//bf file string
 		if(strcmp(argv[1], "-i")==0)
 		{
 			string bf;
@@ -33,13 +33,12 @@ int main(int argc, char* argv[])
 				s.push_back(buffer); //add to end of vector
 			}
 		}	
-		bfparse(s);
 	}
 	else
 	{
-		cout<<"No filename specified."<<endl;
 		return 0;
 	}
+	bfparse(s);
 	return 0;
 }
 void bfparse(vector<char> s)
