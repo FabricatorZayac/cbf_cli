@@ -4,6 +4,8 @@
 #include<deque>
 #include<fstream>
 #include<iostream>
+#include<cstring>
+#include<string>
 using namespace std;
 void bfparse(vector<char> s);
 
@@ -13,20 +15,22 @@ int main(int argc, char* argv[])
 	if(argc>1) //check for arguement
 	{
 		vector<char> s;	//bf file string
-		vector<char>::iterator i_v;
-
-		ifstream in(argv[1]); //opens file
-		assert(in.is_open()); //check for open
-
-		while(!(in.eof()||in.fail()))
+		if(strcmp(argv[1], "-i")==0)
 		{
-			char buffer;
-			in.get(buffer);
+			string bf;
+			getline(cin, bf);
+			copy(bf.begin(), bf.end(), back_inserter(s));
+		}
+		else
+		{
+			ifstream infile(argv[1]); //opens file
+			assert(infile.is_open()); //check for open
 
-			if(buffer=='+'||buffer=='-'||buffer=='.'||buffer==','||buffer=='['||buffer==']'||buffer=='>'||buffer=='<')
+			while(!(infile.eof()||infile.fail()))
 			{
-				s.push_back(buffer); //add to end of deque
-
+				char buffer;
+				infile.get(buffer);
+				s.push_back(buffer); //add to end of vector
 			}
 		}	
 		bfparse(s);
