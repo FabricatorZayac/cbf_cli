@@ -18,6 +18,8 @@ int main(int argc, char* argv[])
 		if(strcmp(argv[1], "-h")==0 || strcmp(argv[1], "--help")==0)
 		{
 			cout<<"Usage: bf [Filename]"<<endl
+				<<"If filename not specified, will run in interactive mode"<<endl
+				<<endl
 				<<" -h, --help          display this help and exit"<<endl;
 			return 0;
 		}
