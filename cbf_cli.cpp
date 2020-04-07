@@ -4,7 +4,6 @@
 #include<deque>
 #include<fstream>
 #include<iostream>
-#include<cstring>
 #include<string>
 using namespace std;
 void bfparse(vector<char> s);
@@ -22,6 +21,10 @@ int main(int argc, char* argv[])
 				<<endl
 				<<" -h, --help          display this help and exit"<<endl;
 			return 0;
+		}
+		if(strcmp(argv[1], "-d")==0 || strcmp(argv[1], "--debug")==0)
+		{
+			cout<<"Debug mode"<<endl
 		}
 
 		ifstream infile(argv[1]); //opens file
