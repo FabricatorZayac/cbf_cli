@@ -24,7 +24,8 @@ int main(int argc, char* argv[])
 		}
 		if(strcmp(argv[1], "-d")==0 || strcmp(argv[1], "--debug")==0)
 		{
-			cout<<"Debug mode"<<endl
+			cout<<"Debug mode"<<endl;
+			bool debug = 1;
 		}
 
 		ifstream infile(argv[1]); //opens file
@@ -43,10 +44,10 @@ int main(int argc, char* argv[])
 		getline(cin, bf);
 		copy(bf.begin(), bf.end(), back_inserter(s));
 	}
-	bfparse(s);
+	bfparse(s, debug);
 	return 0;
 }
-void bfparse(vector<char> s)
+void bfparse(vector<char> s, bool debug)
 {
 	size_t loop;
 	char buffer;
