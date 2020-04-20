@@ -5,6 +5,7 @@
 #include<fstream>
 #include<iostream>
 #include<string>
+#include<string.h>
 using namespace std;
 void bfparse(vector<char> s);
 
@@ -21,11 +22,6 @@ int main(int argc, char* argv[])
 				<<endl
 				<<" -h, --help          display this help and exit"<<endl;
 			return 0;
-		}
-		if(strcmp(argv[1], "-d")==0 || strcmp(argv[1], "--debug")==0)
-		{
-			cout<<"Debug mode"<<endl;
-			bool debug = 1;
 		}
 
 		ifstream infile(argv[1]); //opens file
@@ -44,10 +40,10 @@ int main(int argc, char* argv[])
 		getline(cin, bf);
 		copy(bf.begin(), bf.end(), back_inserter(s));
 	}
-	bfparse(s, debug);
+	bfparse(s);
 	return 0;
 }
-void bfparse(vector<char> s, bool debug)
+void bfparse(vector<char> s)
 {
 	size_t loop;
 	char buffer;
@@ -98,11 +94,11 @@ void bfparse(vector<char> s, bool debug)
 					while(loop>0)
 					{
 						c++;
-						if (*c == '[') 
+						if (*c == '[')
 						{
 							loop++;
-						} 
-						else if (*c == ']') 
+						}
+						else if (*c == ']')
 						{
 							loop--;
 						}
@@ -113,14 +109,14 @@ void bfparse(vector<char> s, bool debug)
 				if(*i==0)
 					continue;
 				loop = 1;
-				while (loop > 0) 
+				while (loop > 0)
 				{
 					c--;
-					if (*c == '[') 
+					if (*c == '[')
 					{
 						loop--;
-					} 
-					else if (*c == ']') 
+					}
+					else if (*c == ']')
 					{
 						loop++;
 					}
