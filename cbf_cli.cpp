@@ -46,18 +46,16 @@ void bfparse(vector<char> s)
 {
 	size_t loop;
 	char buffer;
-	vector<char>::iterator c;
 
 	deque<unsigned char> memory;//brainbuffer array
-	deque<unsigned char>::iterator i;
-	i=memory.begin();
+	auto i=memory.begin();
 
 	//initialization
 	*i = 0;
-	memory.push_back(0);
 	memory.push_front(0);
+	memory.push_back(0);
 
-	for(c=s.begin(); c<s.end(); c++)
+	for(auto c=s.begin(); c<s.end(); c++)
 	{
 		switch(*c){
 			case '<':
