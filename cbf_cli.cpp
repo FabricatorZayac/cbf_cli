@@ -4,7 +4,7 @@
 #include<deque>
 #include<fstream>
 #include<iostream>
-#include<string.h>
+#include<cstring>
 using namespace std;
 void bfparse(vector<char> s);
 
